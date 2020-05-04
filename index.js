@@ -35,10 +35,10 @@ function isAuthenticated(req, res, next) {
 
 //Config MySQL DMBS
 const connection = mysql.createConnection({
-    host : process.env.db_h,
-    user : process.env.db_u,
-    password : process.env.db_p,
-    database : process.env.db_d
+    host : 'localhost',
+    user : 'mguijarro',
+    password : 'mguijarro',
+    database : 'quotes_db'
 });
 
 connection.connect();
