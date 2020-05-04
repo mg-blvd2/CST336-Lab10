@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Popular Quotes Admin</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      
+      <div class='jumbotron'>
+          <h1> Admin Login Page </h1>
+          <form method='POST' action='login'>
+              <label for='username'>Enter username:</label>
+              <input type='text' name='username'>
+              <label for='userAuth'>    Enter password</label>
+              <input type="password" name="userAuth">
+              <hr />
+              
+              <button type='submit' id='loginSubmit'>Submit</button>
+          </form>
+      </div>
+      
+      <% if(typeof loginError != "undefined" && loginError) { %>
+        <h1 class='error'>Wrong Credentials </h1>
+      <% } %>
+      
+  </body>
+</html>

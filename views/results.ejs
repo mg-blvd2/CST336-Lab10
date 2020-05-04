@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs") -%>
+<% var modalsCreated = []; %>
+
+<%if(!quotes){%>
+    <h1 class="bg-caution"> That search didn't return anything. Try Again.</h1>
+<% } else { %> 
+    <% quotes.forEach((currentQuote) => { %>
+    <p class="quotes"> <%=currentQuote.quote%> - 
+        <button type="button" class="btn" data-toggle="modal" data-target="#authorModal<%=currentQuote.authorId%>">
+          <%=currentQuote.firstName%> <%=currentQuote.lastName%> 
+        </button>
+    </p>
+        <% if(!modalsCreated.includes(currentQuote.authorId)) { %>
+            <!-- Modal -->
+            <div class="modal fade" id="authorModal<%=currentQuote.authorId%>" tabindex="-1" role="dialog" aria-labelledby="#authorModalLabel<%=currentQuote.authorId%>" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="authorModalLabel<%=currentQuote.authorId%>"><%=currentQuote.firstName%> <%=currentQuote.lastName%> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <img class="modal-img" src="<%=currentQuote.portrait%>" alt="<%=currentQuote.firstName%> <%=currentQuote.lastName%> Picture" />
+                    <p> DOB: <%=currentQuote.dob.toString().slice(0, 10)%> </p>
+                    <p> DOD: <%=currentQuote.dod.toString().slice(0, 10)%> </p>
+                    <p> Sex:
+                      <% if(currentQuote.sex === 'M'){ %>
+                        Male
+                      <% } else { %>
+                        Female
+                      <% } %>
+                    </p>
+                    <p>Country: <%=currentQuote.country%></p>
+                    <p>Profession: <%=currentQuote.profession%></p>
+                    <hr>
+                    <p><%=currentQuote.biography%></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% modalsCreated.push(currentQuote.authorId); %>
+        <% } %>
+<% }); } %>
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<%- include("partials/footer.ejs") -%>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Add Author </title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    
+    <body>
+        <div class='jumbotron'>
+            <h1> Add/Edit Author </h1>
+            <% if(typeof notFound != 'undefined' && notFound) { %>
+                <h4> Author not found. Try creating a new one.</h4>
+            <% } %>
+        </div>
+        <form method='POST' action='newAuthor'>
+            <input type='text' name='id' id='authorId' hidden>
+            <br>
+            <label for='firstName'>First Name: </label>
+            <input type='text' name='firstName' id='firstName'>
+            <br>
+            <label for='lastName'>Last Name: </label>
+            <input type='text' name='lastName' id='lastName'>
+            <br>
+            <label for='dob'>DOB: </label>
+            <input type='date' name='dob' id='dob'>
+            <br>
+            <label for 'dod'>DOD: </label>
+            <input type='date' name='dod' id='dod'>
+            <br>
+            <label for='gender'>Gender: </label>
+            <select name='gender' id='gender'>
+                <option value='male'>Male</option>
+                <option value='female'>Female</option>
+            </select>
+            <br>
+            <label for='profession'>Profession: </label>
+            <input type='text' name='profession' id='profession'>
+            <br>
+            <label for='country'>Country: </label>
+            <input type='text' name='country' id='country'>
+            <br>
+            <label for='portrait'>Portrait link: </label>
+            <input type='text' name='portrait' id='portrait'>
+            <br>
+            <label for='biography'>Bio: </label>
+            <input type='text' name='biography' id='biography'>
+            <br>
+            
+            <button type='submit'>Submit</button>
+        </form>
+        
+        <script>
+            <% if(typeof authorIdx != 'undefined' && authorIdx != 0){ %>
+                $('#authorId').val(<%= info.authorId %>);
+                $('#firstName').val('<%= info.firstName %>');
+                $('#lastName').val('<%= info.lastName %>');
+                $('#dob').val('<%= info.dob.toISOString().slice(0, 10) %>');
+                $('#dod').val('<%= info.dod.toISOString().slice(0, 10) %>');
+                
+                if('<%= info.sex %>' === 'M'){
+                    $('#gender').val('male');
+                } else {
+                    $('#gender').val('female');
+                }
+                
+                $('#profession').val('<%= info.profession %>');
+                $('#biography').val('<%= info.biography %>');
+                $('#country').val('<%= info.country %>');
+                $('#portrait').val('<%= info.portrait %>');
+            <% } else { %>
+                $('#authorId').val(<%= newIdx %>);
+            <% } %>
+        </script>
+    </body>
+</html>

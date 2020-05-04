@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Popular Quotes Admin</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class='jumbotron'>
+      <h1> ADMIN PAGE </h1>
+      <h3> If you're not an admin, what are you doing here?</h3>
+      
+      <form method='GET' action='/logout'>
+        <button type='submit'>LOGOUT</button>
+      </form>
+    </div>
+  
+    <table id='authorTable'>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>DOB</th>
+        <th>DOD</th>
+        <th><form method'GET' action='/newAuthor'> <button type='submit' class="btn btn-primary">Add a new author</button></form></th>
+      </tr>
+      
+      <% if(data === null) {%>
+        <p> No author's saved!</p>
+      <% } else { %>
+        <tr>
+          <% data.forEach((curAuthor) => { %>
+            <th> <%= curAuthor.authorId %> </th>
+            <th> <%= curAuthor.firstName %> </th>
+            <th> <%= curAuthor.lastName %> </th>
+            <th> <%= curAuthor.dob.toString().slice(0, 15)  %>  </th>
+            <th> <%= curAuthor.dod.toString().slice(0, 15)  %> </th>
+            <th>
+              <form method='GET' action='/EditAuthor'>
+                <input type='hidden' name='authorIdx'value= <%= curAuthor.authorId %> >
+                <button type='submit' class="btn btn-secondary">Edit</button>         
+              </form>
+              <form method='POST' action='/delete' onsubmit="return confirm('Are You sure you want to delete this author');">
+                <input type='hidden' name='authorIdx' value=<%=curAuthor.authorId%> >
+                <button type='submit' class="btn btn-danger">Delete</button>
+              </form>
+            </th>
+        </tr>
+      <% }); } %>
+    </table>
+    
+  </body>
+</html>
