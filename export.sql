@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `l9_admin`
+--
+
+DROP TABLE IF EXISTS `l9_admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `l9_admin` (
+  `adminId` mediumint(9) NOT NULL,
+  `username` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `l9_admin`
+--
+
+LOCK TABLES `l9_admin` WRITE;
+/*!40000 ALTER TABLE `l9_admin` DISABLE KEYS */;
+INSERT INTO `l9_admin` VALUES (1,'admin1','$2b$10$hBAi2J/ndTlHIyS/OH8z0u.L59t.5aUiMzS91MAnz53Mb36yF3ayy'),(2,'admin2','$2b$10$t103zwdPB39VdJ9YzJP4ZeIvoT5Y5gG8B8/Px/dQ5/JcRKtAlD9BC');
+/*!40000 ALTER TABLE `l9_admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `l9_author`
 --
 
@@ -34,7 +58,7 @@ CREATE TABLE `l9_author` (
   `portrait` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `biography` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`authorId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-20  2:09:23
+-- Dump completed on 2020-05-04  6:57:32
